@@ -3,69 +3,17 @@
     <h1>
        {{$event->name}} event 
     </h1>
-   
+   <div class="d-flex justify-content-center "style="width: 100vw">
+    <div class="card" style="width: 40rem">
+        
+        <div class="card-body">
+          <h5 class="card-title">{{ $event->name }}</h5>
+          <p class="card-text">Price {{$event->price}}</p>
+          <p class="card-text">Stock {{$event->quantity}} </p>
+          <p class="card-text">Date Event{{ $event->date_event }} </p>
+          <a href="{{route('events.index')}} " class="btn btn-primary">Buy</a>
+        </div>
+      </div>
+</div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Event name
-                </th>
-                <th>
-                    Price
-                </th>
-                <th>
-                    Tickets stock
-                </th>
-                <th>
-                    Date event
-                </th>
-                <th>
-                    Actions
-                </th>
-
-            </tr>
-
-        </thead>
-        <tbody>
-           
-                <tr>
-                    <td>
-                        {{ $event->id }}
-
-                    </td>
-                    <td>
-                        {{ $event->name }}
-
-                    </td>
-                    <td>
-                        {{ $event->price }}
-
-                    </td>
-                    <td>
-                        {{ $event->quantity }}
-
-                    </td>
-                    <td>
-                        {{ $event->date_event }}
-
-                    </td>
-                    <td>
-                        <a href="{{ route('events.edit', $event) }}">Edit</a>
-                        <a href="">Delete </a>
-                        <a href="{{ route('events.show', $event) }}">Show</a>
-
-
-                    </td>
-
-
-                </tr>
-            
-
-
-        </tbody>
-    </table>
 @endsection
