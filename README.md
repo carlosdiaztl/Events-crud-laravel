@@ -4,3 +4,4 @@ Composer install  and enjoy a crud example
 
 <img src"https://res.cloudinary.com/dzjytwhrg/image/upload/v1675790183/crud-laravel_pl2j1c.png" />
 
+<img align="center" src"https://res.cloudinary.com/dzjytwhrg/image/upload/v1675790183/crud-laravel_pl2j1c.png" alt="www.linkedin.com/in/carlos-díaz-alzate-937748233" height="400" width="600" />
