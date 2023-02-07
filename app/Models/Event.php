@@ -14,4 +14,8 @@ class Event extends Model
         'quantity',
         'date_event'
     ];
+    protected $casts = [
+        'create_at' => 'datetime',
+        'update_at' => 'datetime',
+    ];
 }

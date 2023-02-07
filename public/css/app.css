@@ -1,0 +1,17 @@
+.container-home{
+    
+    height: 80vh;
+ background-image: url("https://img.freepik.com/vector-premium/ecualizador-musica-fondo-abstracto-ondas-sonido-diferentes-eventos-alegres-ilustracion-vectorial-eps-10-puede-utilizar-plantilla-presentacion-diseno-folleto-portada-revista-moskup_299644-2095.jpg?w=2000");
+background-size: contain;
+
+}
+.display-1-success{
+    color: aliceblue;
+}
+form{
+    width: 50vw;
+}
+h1{
+    color: aliceblue;
+
+}
