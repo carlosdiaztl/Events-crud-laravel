@@ -7,20 +7,26 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
+        // ->only('edit','destroy');
     }
-    public function index(){
+    public function index()
+    {
+        $user = auth()->user();
         $events = Event::all();
-       
-        return view('events.index', compact('events'));
+
+        return view('events.index', compact('events', 'user'));
     }
-    public function create(){
-        
-       
+    public function create()
+    {
+
+
         return view('events.create');
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         // $event->name = 'carlos';
         // dd($request->name);
         // dd($request);
@@ -34,29 +40,32 @@ class EventController extends Controller
 
 
         $event = Event::create(
-        [
-            'name'=> $request->name,
-            'price'=> $request->price,
-            'quantity'=> $request->quantity,
-            'date_event'=> $request->date_event
-        ]
+            [
+                'name' => $request->name,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'date_event' => $request->date_event
+            ]
         );
-       
+
 
 
         return redirect()->route('events.index')
-        ->withSuccess("The event {$event->name} was created successfully ");
+            ->withSuccess("The event {$event->name} was created successfully ");
     }
     //
-    public function show($id){
+    public function show($id)
+    {
         $event = Event::find($id);
         return view('events.show', compact('event'));
     }
-    public function edit($id){
+    public function edit($id)
+    {
         $event = Event::find($id);
         return view('events.edit', compact('event'));
     }
-    public function update(Request $request,Event $event){
+    public function update(Request $request, Event $event)
+    {
         $request->validate([
             'name' => "required|min:5|max:30|string",
             'price' => "required|min:5|max:990|integer",
@@ -66,21 +75,20 @@ class EventController extends Controller
         ]);
         $event->update(
             [
-                'name'=> $request->name,
-                'price'=> $request->price,
-                'quantity'=> $request->quantity,
-                'date_event'=> $request->date_event
+                'name' => $request->name,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'date_event' => $request->date_event
             ]
-            );
-            return redirect()->route('events.index')
+        );
+        return redirect()->route('events.index')
             ->withSuccess("The event {$event->name} was Edit successfully ");
     }
-    public function destroy($id){
+    public function destroy($id)
+    {
         $event = Event::find($id);
         $event->delete();
         return redirect()->route('events.index')
-        ->withSuccess("The event with name {$event->name} and id {$event->id}  was delete successfully ");
+            ->withSuccess("The event with name {$event->name} and id {$event->id}  was delete successfully ");
     }
-
-
 }

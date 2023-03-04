@@ -22,3 +22,6 @@ route::resource('events', App\Http\Controllers\EventController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/users/{user}/events/{event}/reservar', [App\Http\Controllers\ReservaController::class, 'create'])->name('reservas.create');
+Route::post('/users/{user}/events/{event}/reservar', [App\Http\Controllers\ReservaController::class, 'store'])->name('reservas.store');
+Route::get('/reservas/{user}/{event}', [App\Http\Controllers\ReservaController::class, 'show'])->name('reservas.show');
