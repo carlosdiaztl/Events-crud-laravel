@@ -79,15 +79,10 @@
 
                                                 <a class="btn btn-primary"
                                                     href="{{ route('events.show', $event) }}">Show</a>
-                                                <div>{{ $user->id }}--{{ $event->id }} </div>
-                                                <form method="POST"
-                                                    action="{{ route('reservas.store', [$user->id, $event->id]) }}">
-                                                    @csrf
+                                                {{-- <div>{{ $user->id }}--{{ $event->id }} </div> --}}
 
-                                                    <button type="submit" class="btn btn-primary">Reservar</button>
-                                                </form>
-                                                <a class="btn btn-primary"
-                                                    href="{{ route('reservas.show', [$user, $event]) }}">Show2</a>
+                                                {{-- <a class="btn btn-primary"
+                                                    href="{{ route('reservas.show', [$user, $event]) }}">Show2</a> --}}
 
 
                                             </td>

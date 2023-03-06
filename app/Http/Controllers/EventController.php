@@ -9,7 +9,7 @@ class EventController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only('show');
         // ->only('edit','destroy');
     }
     public function index()
@@ -56,12 +56,12 @@ class EventController extends Controller
     //
     public function show($id)
     {
-        $event = Event::find($id);
+        $event = Event::findOrFail($id);
         return view('events.show', compact('event'));
     }
     public function edit($id)
     {
-        $event = Event::find($id);
+        $event = Event::findOrFail($id);
         return view('events.edit', compact('event'));
     }
     public function update(Request $request, Event $event)
@@ -86,7 +86,7 @@ class EventController extends Controller
     }
     public function destroy($id)
     {
-        $event = Event::find($id);
+        $event = Event::findOrFail($id);
         $event->delete();
         return redirect()->route('events.index')
             ->withSuccess("The event with name {$event->name} and id {$event->id}  was delete successfully ");

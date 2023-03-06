@@ -25,3 +25,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/users/{user}/events/{event}/reservar', [App\Http\Controllers\ReservaController::class, 'create'])->name('reservas.create');
 Route::post('/users/{user}/events/{event}/reservar', [App\Http\Controllers\ReservaController::class, 'store'])->name('reservas.store');
 Route::get('/reservas/{user}/{event}', [App\Http\Controllers\ReservaController::class, 'show'])->name('reservas.show');
+Route::get('/reservas/{user}', [App\Http\Controllers\ReservaController::class, 'index'])->name('reservas.index');
+Route::delete('/reservas/destroy/{event}', [App\Http\Controllers\ReservaController::class, 'destroy'])->name('reservas.destroy');

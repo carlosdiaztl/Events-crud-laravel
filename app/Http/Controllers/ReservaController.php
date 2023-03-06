@@ -2,18 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReservaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        // ->only('edit','destroy');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($userid)
+
     {
+        if ($userid == auth()->user()->id) {
+            $user = DB::table('users')
+                ->where('id', $userid)->get()->first();
+            $events = Reserva::whereHas('user', function ($query) use ($user) {
+                $query->where('id', $user->id);
+            })->with('event')->get();
+
+            // dd($events, $user);
+            return view('reservas.index', compact('events', 'user'));
+        }
+        return redirect()->route('events.index')->withErrors('No tienes acceso');
+
+
+
+
         //
     }
 
@@ -46,8 +69,8 @@ class ReservaController extends Controller
 
         // return redirect()->route('reservas.show', [$user_id, $event_id])
         // return redirect()->route('reservas.show', compact('user_id', 'event_id'))
-        return redirect()->back()
-            ->with('success', 'Reserva creada con éxito');
+        return redirect()->route('events.index')
+            ->with('success', "Su reserva ha sido creada con éxito");
     }
 
     /**
@@ -93,8 +116,16 @@ class ReservaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($reservation)
     {
+        // $product = Product::findorFail($product);
+        $reservation = Reserva::findorFail($reservation);
+        // dd($reservation);
+
+        $reservation->delete();
+        //decir que el producto no s epuede liminar porque petence a una tabla 
+        return redirect()->route('reservas.index', auth()->user()->id)
+            ->withSuccess("The event with id: {$reservation->id}  was deleted");;
         //
     }
 }
