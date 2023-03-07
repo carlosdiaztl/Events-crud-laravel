@@ -21,10 +21,10 @@
                         @foreach ($events as $reservation)
                             <tr>
 
-                                <th scope="row"> {{ $reservation->getRelations()['event']->id }} </th>
-                                <td> {{ $reservation->getRelations()['event']->name }}</td>
-                                <td>{{ $reservation->getRelations()['event']->price }}</td>
-                                <td>{{ $reservation->getRelations()['event']->date_event }}</td>
+                                <th scope="row"> {{ $reservation->id }} </th>
+                                <td> {{ $reservation->name }}</td>
+                                <td>{{ $reservation->price }}</td>
+                                <td>{{ $reservation->date_event }}</td>
                                 <td>
                                     <form class="d-inline" action="{{ route('reservas.destroy', $reservation->id) }}"
                                         method="POST">

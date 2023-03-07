@@ -29,7 +29,18 @@ class ReservaController extends Controller
                 $query->where('id', $user->id);
             })->with('event')->get();
 
-            // dd($events, $user);
+            $newevents = array();
+
+            foreach ($events as $event) {
+                // $event = $event->getRelations()['event'];
+
+                array_push($newevents, $event->getRelations()['event']);
+
+                // dd($event);
+            }
+            $events = $newevents;
+            // dd($events);
+
             return view('reservas.index', compact('events', 'user'));
         }
         return redirect()->route('events.index')->withErrors('No tienes acceso');
