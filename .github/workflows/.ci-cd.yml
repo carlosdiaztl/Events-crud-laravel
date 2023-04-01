@@ -37,7 +37,7 @@ jobs:
 
       - name: install dependecies node-packages
         run: npm install
-
+      # 1
       # - name: clean confi
       #   run: php artisan config:cache
       - name: Prepare the application
